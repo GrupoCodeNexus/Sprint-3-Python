@@ -2,7 +2,7 @@
 3º Sprint da challenge com o Hospital Infantil Sabará | Sistema de cadastro de tratamentos
 
 # Descrição do projeto
-- descrição
+- Sistema para cadastro de tratamentos
 
 # Diagrama
 - colocar a imagem aqui

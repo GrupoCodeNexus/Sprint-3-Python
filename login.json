@@ -1,0 +1,17 @@
+[
+    {
+        "usuario": "adm",
+        "senha": "123",
+        "cargo": "desenvolvedor"
+    },
+    {
+        "usuario": "kayque",
+        "senha": "dev123",
+        "cargo": "médico"
+    },
+    {
+        "usuario": "Francisco",
+        "senha": "12345678",
+        "cargo": "enfermeiro"
+    }
+]

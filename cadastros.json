@@ -1,0 +1,20 @@
+[
+    {
+        "nome": "francisco",
+        "idade": 12,
+        "medicamento": "dorflex",
+        "data_cadastro": "2025-04-16T14:32:33.328114"
+    },
+    {
+        "nome": "kayque",
+        "idade": 15,
+        "medicamento": "paracetamol",
+        "data_cadastro": "2025-04-07T14:32:49.694089"
+    },
+    {
+        "nome": "marcelo trollo",
+        "idade": 11,
+        "medicamento": "dorflex",
+        "data_cadastro": "2025-04-16T14:33:01.129402"
+    }
+]

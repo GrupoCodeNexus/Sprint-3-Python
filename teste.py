@@ -4,7 +4,6 @@ from collections import Counter
 import os
 
 # Nome dos arquivos JSON locais
-USUARIOS_FILE = "usuarios.json"
 CADASTROS_FILE = "cadastros.json"
 
 # Lista para armazenar os tratamentos cadastrados (agora populada via arquivo JSON)

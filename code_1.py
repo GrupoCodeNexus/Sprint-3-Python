@@ -81,4 +81,38 @@ def menu():
         else:
             print("Opção inválida.")
 
+# Função de Login para acessar o sistema
+def realizar_login ():
+    try:
+        with open('login.json', 'r') as arquivo:
+            usuario = json.load(arquivo)
+    # Verifica se o arquivo json existe
+    except FileNotFoundError:
+        print("-----Arquivo de usuário não encontrado-----")
+        return False
+
+    user = str(input('Digite o seu usuário: '))
+    password = input('Digite a sua senha: ')
+
+    for login_usario in usuario:
+        if login_usario['usuario'] == user and login_usario['senha'] ==password:
+            print(f"Bem vindo {login_usario['usuario']}")
+            menu()
+            return True
+    
+    print("\nUsuário ou senha incorretos, tentar novamente?")
+    print("\n----Menu----\n1.Tentar novamente\n2.Sair\n---------")
+    opcao_login = int(input("Digite a opção 1 ou 2: "))
+    match opcao_login:
+        case 1:
+            realizar_login()
+        case 2:
+            print("Fechando sistema...")
+            return False
+        case _:
+            print(f"Opção invalida")
+    return False
+
+realizar_login()
+
 

@@ -4,11 +4,11 @@ from collections import Counter
 import os
 
 # Nome dos arquivos JSON locais
-USUARIOS_FILE = "usuarios.json"
 CADASTROS_FILE = "cadastros.json"
 
 # Lista para armazenar os tratamentos cadastrados (agora populada via arquivo JSON)
 tratamentos_cadastrados = []
+
 
 # Função para ler dados de um arquivo JSON local
 def ler_dados_json(cadastros):
@@ -31,15 +31,6 @@ def escrever_dados_json(cadastros, dados):
     except IOError:
         print(f"Erro: Falha ao escrever no arquivo '{cadastros}'.")
         return False
-
-# Função para autenticar (verificar no arquivo usuarios.json)
-def autenticar_usuario(usuario, senha):
-    usuarios_data = ler_dados_json(USUARIOS_FILE)
-    if usuarios_data and isinstance(usuarios_data, list):
-        for user_data in usuarios_data:
-            if user_data.get('usuario') == usuario and user_data.get('senha') == senha:
-                return True
-    return False
 
 # Função para obter os dados de tratamento do arquivo cadastros.json
 def obter_dados_cadastros():
@@ -225,14 +216,40 @@ def menu():
         else:
             print("Opção inválida.")
 
-# Login para acessar o sistema e obter dados dos arquivos JSON
-user = str(input('Digite o seu usuário: '))
-password = input('Digite a sua senha: ')
+# Função de Login para acessar o sistema
+def realizar_login ():
+    try:
+        with open('login.json', 'r') as arquivo:
+            usuario = json.load(arquivo)
+    # Verifica se o arquivo json existe
+    except FileNotFoundError:
+        print("-----Arquivo de usuário não encontrado-----")
+        return False
 
-if autenticar_usuario(user, password):
-    print('Bem vindo ao sistema :)')
-    tratamentos_cadastrados = obter_dados_cadastros()
-    print('Dados de tratamento carregados dos arquivos locais.')
-    menu()
-else:
-    print('Usuário ou senha incorretos')
+    user = str(input('Digite o seu usuário: '))
+    password = input('Digite a sua senha: ')
+    
+
+    for login_usario in usuario:
+        if login_usario['usuario'] == user and login_usario['senha'] ==password:
+            print(f"Bem vindo {login_usario['usuario']}")
+            # global para carregar os cadastros que estão dentro da API
+            global tratamentos_cadastrados
+            tratamentos_cadastrados = ler_dados_json(CADASTROS_FILE) or [] # Carrega os dados aqui
+            menu()
+            return True
+    
+    print("\nUsuário ou senha incorretos, tentar novamente?")
+    print("\n----Menu----\n1.Tentar novamente\n2.Sair\n---------")
+    opcao_login = int(input("Digite a opção 1 ou 2: "))
+    match opcao_login:
+        case 1:
+            realizar_login()
+        case 2:
+            print("Fechando sistema...")
+            return False
+        case _:
+            print(f"Opção invalida")
+    return False
+
+realizar_login()

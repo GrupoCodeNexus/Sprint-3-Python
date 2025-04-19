@@ -2,6 +2,7 @@ import json
 from datetime import datetime, timedelta
 from collections import Counter
 import os
+import platform
 
 # Nome dos arquivos JSON locais
 CADASTROS_FILE = "cadastros.json"
@@ -12,7 +13,13 @@ tratamentos_cadastrados = []
 # Função para limpar o terminal
 
 def limpar_terminal():
-    os.system('cls')
+    sistema_operacional = platform.system()
+    if sistema_operacional == "Windows":
+        os.system('cls')
+    elif sistema_operacional == "Linux" or sistema_operacional == "Darwin":
+        os.system('clear')
+    else:
+        print(f"Sistema operacional '{sistema_operacional}' não suportado para limpeza de terminal.")
 
 # Função para ler dados de um arquivo JSON local
 def ler_dados_json(cadastros):

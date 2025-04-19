@@ -1,0 +1,14 @@
+# Para impedir que o arquivo fique atualizando sempre com o `git add .` fiz isso para impedir os problemas que estavamos tendo com os merges 
+
+# Use o comando abaixo para limpar o cachê de alteração 
+
+# git rm --cached cadastros.json
+
+
+# Ignorar as mudanças feitas em cadastro
+
+#cadastros.json
+
+
+#### OBSERVAÇÃO: ISSO NÃO REMOVEU COMPLETAMENTO O PROBLEMA
+#### Procurar outra solução depois

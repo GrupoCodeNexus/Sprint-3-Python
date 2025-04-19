@@ -9,6 +9,10 @@ CADASTROS_FILE = "cadastros.json"
 # Lista para armazenar os tratamentos cadastrados (agora populada via arquivo JSON)
 tratamentos_cadastrados = []
 
+# Função para limpar o terminal
+
+def limpar_terminal():
+    os.system('cls')
 
 # Função para ler dados de um arquivo JSON local
 def ler_dados_json(cadastros):
@@ -232,6 +236,7 @@ def realizar_login ():
 
     for login_usario in usuario:
         if login_usario['usuario'] == user and login_usario['senha'] ==password:
+            limpar_terminal()
             print(f"Bem vindo {login_usario['usuario']}")
             # global para carregar os cadastros que estão dentro da API
             global tratamentos_cadastrados
@@ -244,6 +249,7 @@ def realizar_login ():
     opcao_login = int(input("Digite a opção 1 ou 2: "))
     match opcao_login:
         case 1:
+            limpar_terminal()
             realizar_login()
         case 2:
             print("Fechando sistema...")

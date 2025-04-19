@@ -225,8 +225,8 @@ def menu():
             print("Encerrando o sistema...")
             break
         else:
-            print("Opção inválida.")
-
+            print(f"\nOpção '{opcao}' inválida!")
+            
 # Função de Login para acessar o sistema
 def realizar_login ():
     try:

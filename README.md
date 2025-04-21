@@ -5,7 +5,8 @@
 - Sistema para cadastro de tratamentos, geração de relatórios e dashboards
 
 # Diagrama
-- colocar a imagem aqui
+![Untitled-2024-10-18-2008](https://github.com/user-attachments/assets/4f03d59e-1fe8-479a-95b8-0853399e8530)
+
 
 # Links úteis
 - vídeo

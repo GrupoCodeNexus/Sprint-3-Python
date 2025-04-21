@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar Tratamento</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; min-height: 80vh; margin: 20px; }
+        .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 400px; }
+        h1 { color: #333; text-align: center; margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #555; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button[type="submit"], a.button { background-color: #5cb85c; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; text-decoration: none; display: inline-block; margin-top: 10px; }
+        button[type="submit"]:hover, a.button:hover { background-color: #4cae4c; }
+        .error { color: red; margin-top: 10px; text-align: center; }
+        .back-button { background-color: #007bff; }
+        .back-button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastrar Novo Tratamento</h1>
+        {% if erro_cadastro %}
+            <p class="error">Erro ao cadastrar o tratamento.</p>
+        {% endif %}
+        <form method="POST" action="{{ url_for('cadastrar') }}">
+            <div>
+                <label for="nome">Nome do Paciente:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div>
+                <label for="idade">Idade do Paciente:</label>
+                <input type="number" id="idade" name="idade" required>
+            </div>
+            <div>
+                <label for="medicamento">Medicamento:</label>
+                <input type="text" id="medicamento" name="medicamento" required>
+            </div>
+            <button type="submit">Salvar Tratamento</button>
+            <a href="{{ url_for('listar') }}" class="button back-button">Voltar</a>
+        </form>
+    </div>
+</body>
+</html>

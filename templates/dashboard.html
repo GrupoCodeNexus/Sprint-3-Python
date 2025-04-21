@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; margin: 20px; }
+        h1 { color: #333; text-align: center; margin-bottom: 20px; }
+        .dashboard-container { display: flex; flex-wrap: wrap; justify-content: space-around; }
+        .chart-container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px; width: calc(50% - 30px); min-width: 300px; text-align: center; }
+        h2 { color: #555; margin-top: 0; margin-bottom: 15px; }
+        img { max-width: 100%; height: auto; }
+        .button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 20px; width: 150px; text-align: center; }
+        .button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <div class="dashboard-container">
+        <div class="chart-container">
+            <h2>Novos Cadastros por Período</h2>
+            {% if grafico_cadastros %}
+                <img src="data:image/png;base64,{{ grafico_cadastros }}" alt="Gráfico de Cadastros">
+            {% else %}
+                <p>Gráfico de cadastros indisponível.</p>
+            {% endif %}
+        </div>
+        <div class="chart-container">
+            <h2>Frequência dos Medicamentos Mais Utilizados</h2>
+            {% if grafico_medicamentos %}
+                <img src="data:image/png;base64,{{ grafico_medicamentos }}" alt="Gráfico de Medicamentos">
+            {% else %}
+                <p>Gráfico de frequência de medicamentos indisponível.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <a href="{{ url_for('listar') }}" class="button">Voltar para a Lista</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tratamentos Cadastrados</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; margin: 20px; }
+        h1 { color: #333; text-align: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; color: #333; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .button-container { margin-bottom: 20px; text-align: center; }
+        .button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; margin: 5px; display: inline-block; }
+        .button:hover { background-color: #0056b3; }
+        .remove-button { background-color: #dc3545; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
+        .remove-button:hover { background-color: #c82333; }
+        .error { color: red; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Tratamentos Cadastrados</h1>
+    <div class="button-container">
+        <a href="{{ url_for('cadastrar') }}" class="button">Cadastrar Novo Tratamento</a>
+        <a href="{{ url_for('relatorio_cadastros') }}" class="button">Relatório de Cadastros</a>
+        <a href="{{ url_for('relatorio_medicamentos') }}" class="button">Relatório de Medicamentos</a>
+        <a href="{{ url_for('dashboard') }}" class="button">Dashboard</a>
+    </div>
+    {% if erro_remover %}
+        <p class="error">Erro ao remover o tratamento.</p>
+    {% endif %}
+    {% if tratamentos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Medicamento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tratamento in tratamentos %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ tratamento.nome }}</td>
+                    <td>{{ tratamento.idade }}</td>
+                    <td>{{ tratamento.medicamento }}</td>
+                    <td>
+                        <a href="{{ url_for('remover', indice=loop.index) }}" class="remove-button">Remover</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum tratamento cadastrado ainda.</p>
+    {% endif %}
+</body>
+</html>

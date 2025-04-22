@@ -5,7 +5,8 @@ import os
 import platform
 
 # Nome dos arquivos JSON locais
-CADASTROS_FILE = "cadastros.json"
+CADASTROS_FILE = "Data/cadastros.json"
+LOGIN_FILE = "Data/login.json"
 
 # Lista para armazenar os tratamentos cadastrados (agora populada via arquivo JSON)
 tratamentos_cadastrados = []
@@ -230,7 +231,7 @@ def menu():
 # Função de Login para acessar o sistema
 def realizar_login ():
     try:
-        with open('login.json', 'r') as arquivo:
+        with open(LOGIN_FILE, 'r') as arquivo:
             usuario = json.load(arquivo)
     # Verifica se o arquivo json existe
     except FileNotFoundError:

@@ -6,8 +6,8 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 
 # Nome dos arquivos JSON locais
-CADASTROS_FILE = "cadastros.json"
-LOGIN_FILE = "login.json"
+CADASTROS_FILE = "Data/cadastros.json"
+LOGIN_FILE = "Data/login.json"
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sua_chave_secreta'  # Para funcionalidades como sessões (se adicionar login web)
@@ -46,11 +46,12 @@ def obter_dados_cadastros():
 
 # Função para cadastrar um novo tratamento (adiciona ao arquivo cadastros.json)
 def cadastrar_tratamento(nome, idade, medicamento, responsavel):
+    medicamento_normalizado = medicamento.strip().capitalize() # Remove espaços e converte para a primeira letra ser maiuscula
     novo_tratamento = {
-        'nome': nome,
+        'nome': nome.strip().title(),
         'idade': idade,
-        'medicamento': medicamento,
-        'responsavel': responsavel,
+        'medicamento': medicamento_normalizado,
+        'responsavel': responsavel.strip().title(),
         'data_cadastro': datetime.now().isoformat()
     }
 

@@ -3,27 +3,54 @@
 <head>
     <title>Tratamentos Cadastrados</title>
     <style>
-        body { font-family: Verdana; background-color: #f4f4f4; margin: 20px; }
+        body { font-family: Verdana; padding: 30px 100px; background-color: #e9ecef; margin: 20px; }
         h1 { color: #333; text-align: center; margin-bottom: 20px; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
         th { background-color: #f2f2f2; color: #333; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         .button-container { margin-bottom: 20px; text-align: center; }
-        .button { background-color: #007bff; color: white; transition: all 0.3s ease; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; margin: 5px; display: inline-block; }
-        .button:hover { background-color: #0056b3; transform: scale(1.05); }
+        .button { background-color: #1785b8; color: white; transition: all 0.3s ease; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; margin: 5px; display: inline-block; }
+        .button:hover { background-color: #0056B3; transform: scale(1.05); }
         .remove-button { background-color: #dc3545; color: white; padding: 4px 12px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
         .remove-button:hover { background-color: #b31a29; }
         .error { color: red; margin-top: 10px; text-align: center; }
+        #btn-new{ background-color: rgb(34, 150, 34); }
+        #btn-new:hover{ background-color: rgb(9, 97, 9);}
+
+        .footer-center {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 22%;
+        }
+
+        .footer-center img {
+            height: 50px; /* Ajuste a altura dos logos */
+        }
+
+        #btn-dash{
+            background-color: #e0ac3c;
+        }
+
+        #btn-dash:hover{
+            background-color: #a7802c;
+        }
+
+        #logo-cn{
+            width: 100px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <h1>Tratamentos Cadastrados</h1>
     <div class="button-container">
-        <a href="{{ url_for('cadastrar') }}" class="button">Cadastrar Novo Tratamento</a>
+        <a href="{{ url_for('cadastrar') }}" class="button" id="btn-new">Cadastrar Novo Tratamento</a>
         <a href="{{ url_for('relatorio_cadastros') }}" class="button">Relatório de Cadastros</a>
         <a href="{{ url_for('relatorio_medicamentos') }}" class="button">Relatório de Medicamentos</a>
-        <a href="{{ url_for('dashboard') }}" class="button">Dashboard</a>
+        <a href="{{ url_for('dashboard') }}" class="button" id="btn-dash">Dashboard</a>
     </div>
     {% if erro_remover %}
         <p class="error">Erro ao remover o tratamento.</p>
@@ -36,25 +63,35 @@
                     <th>Nome</th>
                     <th>Idade</th>
                     <th>Medicamento</th>
+                    <th>Responsável</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
+                <!--percorre a lista tratamentos e exibe na posição correta-->
                 {% for tratamento in tratamentos %}
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ tratamento.nome }}</td>
                     <td>{{ tratamento.idade }}</td>
                     <td>{{ tratamento.medicamento }}</td>
+                    <td>{{ tratamento.responsavel}}</td>
                     <td>
                         <a href="{{ url_for('remover', indice=loop.index) }}" class="remove-button">Remover</a>
                     </td>
                 </tr>
-                {% endfor %}
+                {% endfor %} <!--finalizando loops for-->
             </tbody>
         </table>
     {% else %}
         <p>Nenhum tratamento cadastrado ainda.</p>
     {% endif %}
+    <footer>
+        <div class="footer-center">
+            <img src="{{ url_for('static', filename='logo_hospital.png') }}" alt="Logo Hospital" id="logo-cn">
+            <img src="{{ url_for('static', filename='logo_facul.png') }}" alt="Logo Faculdade">
+            <img src="{{ url_for('static', filename='logo_equipe.png') }}" alt="Logo Code Nexus" id="logo-cn">
+        </div>
+    </footer>
 </body>
 </html>

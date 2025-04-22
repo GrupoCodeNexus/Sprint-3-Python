@@ -45,11 +45,12 @@ def obter_dados_cadastros():
     return []
 
 # Função para cadastrar um novo tratamento (adiciona ao arquivo cadastros.json)
-def cadastrar_tratamento(nome, idade, medicamento):
+def cadastrar_tratamento(nome, idade, medicamento, responsavel):
     novo_tratamento = {
         'nome': nome,
         'idade': idade,
         'medicamento': medicamento,
+        'responsavel': responsavel,
         'data_cadastro': datetime.now().isoformat()
     }
 
@@ -146,7 +147,8 @@ def cadastrar():
         nome = request.form['nome']
         idade = request.form['idade']
         medicamento = request.form['medicamento']
-        if cadastrar_tratamento(nome, idade, medicamento):
+        responsavel = request.form['responsavel']  # Novo campo do formulário
+        if cadastrar_tratamento(nome, idade, medicamento, responsavel):
             return redirect(url_for('listar'))
         else:
             return render_template('cadastrar_tratamento.html', erro_cadastro=True)

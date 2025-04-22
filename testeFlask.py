@@ -48,10 +48,10 @@ def obter_dados_cadastros():
 def cadastrar_tratamento(nome, idade, medicamento, responsavel):
     medicamento_normalizado = medicamento.strip().capitalize() # Remove espaços e converte para a primeira letra ser maiuscula
     novo_tratamento = {
-        'nome': nome.strip().capitalize(),
+        'nome': nome.strip().title(),
         'idade': idade,
         'medicamento': medicamento_normalizado,
-        'responsavel': responsavel.strip().capitalize(),
+        'responsavel': responsavel.strip().title(),
         'data_cadastro': datetime.now().isoformat()
     }
 

@@ -46,11 +46,12 @@ def obter_dados_cadastros():
 
 # Função para cadastrar um novo tratamento (adiciona ao arquivo cadastros.json)
 def cadastrar_tratamento(nome, idade, medicamento, responsavel):
+    medicamento_normalizado = medicamento.strip().capitalize() # Remove espaços e converte para a primeira letra ser maiuscula
     novo_tratamento = {
-        'nome': nome,
+        'nome': nome.strip().capitalize(),
         'idade': idade,
-        'medicamento': medicamento,
-        'responsavel': responsavel,
+        'medicamento': medicamento_normalizado,
+        'responsavel': responsavel.strip().capitalize(),
         'data_cadastro': datetime.now().isoformat()
     }
 

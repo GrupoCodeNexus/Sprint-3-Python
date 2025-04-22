@@ -6,8 +6,8 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 
 # Nome dos arquivos JSON locais
-CADASTROS_FILE = "cadastros.json"
-LOGIN_FILE = "login.json"
+CADASTROS_FILE = "Data/cadastros.json"
+LOGIN_FILE = "Data/login.json"
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sua_chave_secreta'  # Para funcionalidades como sessões (se adicionar login web)

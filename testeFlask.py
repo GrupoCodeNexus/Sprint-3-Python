@@ -149,7 +149,7 @@ def cadastrar():
         idade = request.form['idade']
         medicamento = request.form['medicamento']
         responsavel = request.form['responsavel']  # Novo campo do formulário
-        if cadastrar_tratamento(nome, idade, medicamento, responsavel):
+        if cadastrar_tratamento(nome, idade, medicamento,  responsavel):
             return redirect(url_for('listar'))
         else:
             return render_template('cadastrar_tratamento.html', erro_cadastro=True)

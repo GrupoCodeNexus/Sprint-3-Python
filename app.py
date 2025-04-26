@@ -1,7 +1,6 @@
 import json
 from datetime import datetime, timedelta
 from collections import Counter
-import os
 
 from flask import Flask, render_template, request, redirect, url_for
 
